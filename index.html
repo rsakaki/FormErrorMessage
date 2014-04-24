@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="icon" href="/i/favicon.ico" /> 
+  <link rel="stylesheet" href="/css/style.css" media="screen, tv" />
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="/js/formErrorMessage.js"></script>
+</head>
+<body>
+  <div class="l-contents">
+    <form action="" class="form_is-horizontal">
+      <div class="field">
+        <div class="field__title">name</div>
+        <!-- /.field__title -->
+
+        <div class="field__input">
+          <input type="text" name="name" />
+          <div class="errorMessage">
+            <div class="errorMessage__content"></div>
+          </div>
+
+        </div>
+        <!-- /.field__input -->
+
+      </div>
+      <!-- /.field -->
+
+      <div class="field">
+        <div class="field__title">password</div>
+        <!-- /.field__title -->
+
+        <div class="field__input">
+          <input type="password" name="password" />
+          <div class="errorMessage">
+            <div class="errorMessage__content"></div>
+          </div>
+        </div>
+        <!-- /.field__input -->
+
+      </div>
+      <!-- /.field -->
+
+      <div class="field">
+        <label class="field__title">favorite item</label>
+        <div class="field__input">
+          <div class="field__input__box">
+            <strong>No. 1</strong><br />
+            <input type="text" class="w300"  name="fav1" />
+            <div class="errorMessage">
+              <div class="errorMessage__content"></div>
+            </div>
+          </div>
+          <div class="field__input__box">
+            <strong>No. 2</strong><br />
+            <input type="text" class="w300" name="fav2" >
+            <div class="errorMessage">
+              <div class="errorMessage__content"></div>
+            </div>
+          </div>
+          <div class="field__input__box">
+            <strong>No. 3</strong><br />
+            <input type="text" class="w300" name="fav3" >
+            <div class="errorMessage">
+              <div class="errorMessage__content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.field -->
+
+      <div class="field">
+        <input type="submit" class="submit" />
+      </div>
+
+    </form>
+    <!-- /.form_is-horizontal -->
+
+  </div>
+  <!-- /.l-contents -->
+
+</body>
+</html>

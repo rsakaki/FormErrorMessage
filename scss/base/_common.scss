@@ -1,0 +1,157 @@
+@charset "UTF-8";
+// カラーパレット
+//        1.yellow 2.green  3.blue   4.orange 5.red    6.violet
+$blue:            #247fd1, #1564ab, #4398e5, #62a6e5;
+$orange:          #F19F2C, #ea7e12, #fcbf45;
+$red:             #e74c3c, #d8301e, #fa7863;
+$green:           #00bb9b, #00a271, #34cfb4;
+$body-font-color: #444,    #222,    #888;
+$body-font-colorDarkBg: #ccc,    #fff;
+
+$color:   #f1c40f, #19bd9b, #3598dc, #e67e22, #e74c3c, #9b59b6;
+$colorD:  #f39b13, #17a086, #297fb8, #d35400, #c0392b, #8e44ad;
+$colorL:  #fef9e7, #e9f8f5, #ebf5fb, #fae5d3, #fdedec, #f5eff8;
+// blue #3598dc, #297fb8, #ebf5fb
+$colorG:  #dd4b39, #bc4031;
+$colorF:  #3b5998, #233b6b;
+
+// contents area width
+$contents-area-width: 1200px, 980px;
+
+$medium:  "only screen and (max-width:1280px)";
+$large:  "only screen and (max-width:1680px)";
+
+// $font-family: "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "HGPゴシックE", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+//prefix
+$prefixList: -moz-,-webkit-,-o-,-ie-,-ms-,'';
+
+//----- Mix in -----
+@mixin link-icon($iconPath, $padLeft, $valueX, $valueY) {
+  background: url('#{$iconPath}.png') #{$valueX}px #{$valueY}em no-repeat;
+  background-position: #{$valueX}px #{$valueY / 2}em \9; //for IE8 below
+  padding-left: #{$padLeft}px;
+  padding-bottom: 1px;
+};
+
+@mixin inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  letter-spacing: normal;
+};
+
+@mixin box-sizing ($boxsizingValue) {
+  @for $k from 1 through length($prefixList) {
+    $prefix: nth($prefixList, $k);
+    #{$prefix}box-sizing: #{$boxsizingValue};
+  }
+};
+
+@mixin fs ($fontSizeValue) {
+  $fontSizeRemValue: $fontSizeValue / 10;
+  font-size: #{$fontSizeValue}px;
+  font-size: #{$fontSizeRemValue}rem;
+};
+
+@mixin baseWidth ($maxWidth:false, $marginTop:false, $marginBottom:false) {
+  
+  $width: 935;
+  $top: 0;
+  $bottom: 0;
+  
+  @if $maxWidth != false {
+    $width: $maxWidth;
+  }
+  
+  @if $marginTop != false {
+    $top: $marginTop;
+  }
+  
+  @if $marginBottom != false {
+    $bottom: $marginBottom;
+  }
+  
+  width: #{$width}px \9; //for IE8 below
+  max-width: #{$width}px;
+  margin: #{$top}px auto #{$bottom}px;
+}
+
+@mixin linear-gradient ($startcolor, $endcolor) {
+  background: #{$startcolor};
+  background: -moz-linear-gradient(top, #{$startcolor} 0%, #{$endcolor} 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#{$startcolor}), color-stop(100%,#{$endcolor})); /* webkit */
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#{$startcolor}', endColorstr='#{$endcolor}')";
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$startcolor}', endColorstr='#{$endcolor}',GradientType=0 ); /* ie */
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}
+
+@mixin css3($property, $value...) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+
+@mixin liquidAdjust($itemWidth: 100, $margin: 0) {
+  $itemWidthWrap: $itemWidth + 20;
+  $itemRowIndex: round((2200 - $margin) / $itemWidthWrap);
+
+  @for $k from 1 through $itemRowIndex {
+    $minwidth: ($k * $itemWidthWrap) + $margin;
+    @media only screen and (min-width:#{$minwidth}px) {
+      $width: floor-decimal(100% / $k, 1);
+      width: #{$width};
+    }
+  }
+}
+
+// Round (四捨五入)
+@function round-decimal ($number, $digits: 0) {
+    @return to-fixed($number, $digits, 'round');
+}
+
+// Ceil (切り上げ)
+@function ceil-decimal ($number, $digits: 0) {
+    @return to-fixed($number, $digits, 'ceil');
+}
+
+// Floor (切り捨て)
+@function floor-decimal ($number, $digits: 0) {
+    @return to-fixed($number, $digits, 'floor');
+}
+
+@function to-fixed ($number, $digits: 0, $round: 'round') {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+    @if $round == 'round' {
+        @return round($number * $n) / $n;
+    } @else if $round == 'ceil' {
+        @return ceil($number * $n) / $n;
+    } @else if $round == 'floor' {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $round } is undefined keyword.';
+        @return $number;
+    }
+}

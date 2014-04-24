@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-family: $font-family;
+  color: nth($body-font-color, 1);
+  @include fs(13);
+  overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
+}
+
+.l-contents {
+  width: 900px;
+  margin: 20px auto;
+}
+p {
+  margin: 0 0 15px;
+}
+
+a {
+  cursor: pointer;
+}

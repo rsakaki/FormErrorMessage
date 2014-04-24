@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+.set-left {
+  text-align: left !important;
+}
+
+.set-center {
+  text-align: center !important;
+}
+
+.set-right {
+  text-align: right !important;
+}
+
+.left {
+  float: left !important;
+}
+
+.right {
+  float: right !important;
+}
+
+.clearfix {
+  *zoom:1;
+  &:before,
+  &:after {
+    content:"";
+    display: table;
+  }
+  &:after {
+    clear:both;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.style-block {
+  display: block !important;
+}
+
+.style-inline {
+  display: inline !important;
+}
+
+.style-inlineBlock {
+  display: inline-block !important;
+}
+
+.m-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+.w-auto {
+  width: auto !important;
+}
+
+//box-margin
+$setMarginClassList : t, r, b, l;
+$setMarginPropertyList : top, right, bottom, left;
+$marginClassList : length($setMarginClassList);
+
+@for $j from 1 through $marginClassList{
+  $marginClass : nth($setMarginClassList, $j);
+  $marginPropertyClass : nth($setMarginPropertyList, $j);
+
+  @for $i from 0 through 9 {
+    .m-#{$marginClass}#{$i} {
+      margin-#{$marginPropertyClass}: #{$i}px !important;
+    }
+  }
+
+  @for $i from 2 through 60 {
+    .m-#{$marginClass}#{$i * 5} {
+      margin-#{$marginPropertyClass}: #{$i * 5}px !important;
+    }
+  }
+
+  @for $i from 1 through 20 {
+    .m-#{$marginClass}#{$i*5}p {
+      margin-#{$marginPropertyClass}: #{$i * 5%} !important;
+    }
+  }
+
+}
+
+@for $j from 1 through $marginClassList{
+  $marginClass : nth($setMarginClassList, $j);
+  $marginPropertyClass : nth($setMarginPropertyList, $j);
+
+  @for $i from 0 through 9 {
+    .p-#{$marginClass}#{$i} {
+      padding-#{$marginPropertyClass}: #{$i}px !important;
+    }
+  }
+
+  @for $i from 2 through 60 {
+    .p-#{$marginClass}#{$i * 5} {
+      padding-#{$marginPropertyClass}: #{$i * 5}px !important;
+    }
+  }
+
+}
+
+//box-width
+@for $i from 0 through 180 {
+  .w#{$i*5} {
+    width: #{$i*5}px !important;
+  }
+}
+
+//box-width percentage
+@for $i from 1 through 20 {
+  .w#{$i*5}p {
+    width: #{$i * 5%} !important;
+  }
+}
+.w33p {
+  width: 33.3% !important;
+}
+.w48p {
+  width: 48% !important;
+}
+.w66p {
+  width: 66% !important;
+}
+
+//position under cells
+$rowPosition: l, c, r;
+$rowPositionValue: left, center, right;
+$verticalPosition: t, m, b;
+$verticalPositionValue: top, middle, bottom;
+@for $k from 1 through length($verticalPosition) {
+  @for $l from 1 through length($rowPosition) {
+    .#{nth($verticalPosition, $l)}-#{nth($rowPosition, $k)} {
+      text-align: #{nth($rowPositionValue, $k)} !important;
+      vertical-align: #{nth($verticalPositionValue, $l)} !important;
+    }
+  }
+}
+
+.f-l {
+  font-size: 125% !important;
+}
+.f-ll {
+  font-size: 175% !important;
+}
+.f-s {
+  font-size: 82% !important;
+}

@@ -1,0 +1,94 @@
+.field {
+  margin: 20px auto;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.field__title {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.field__input {
+  display: inline-block;
+  width: 100%;
+}
+
+.field__input__text {
+  margin: 0 0 8px;
+  @include fs(12);
+  color: nth($body-font-color, 3);
+}
+
+.field__input__section {
+  padding: 10px 0;
+  width: 90%;
+  line-height: normal;
+}
+
+.field__input__box {
+  &.style-inlineBlock {
+    vertical-align: top;
+  }
+}
+
+.field__input__preview {
+  display: inline-block;
+  padding: 9px 14px;
+  margin-bottom: 10px;
+  line-height: normal;
+  background-color: #f8f9fa;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  max-width: 80%;
+}
+
+.form_is-horizontal {
+  overflow: hidden;
+
+  .field {
+    @extend .clearfix;
+  }
+  .field__title {
+    float: left;
+    width: 30%;
+    margin-left: 5%;
+    margin-bottom: 0;
+    padding-top: 7px;
+  }
+  .field__input {
+    position: relative;
+    float: left;
+    width: 60%;
+    margin-left: 5%;
+  }
+  .l-container & {
+    @media #{$medium} {
+      .field__title {
+        float: none;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      .field__input {
+        float: none;
+        width: 100%
+      }
+    }
+  }
+}
+.form_is-vertical {
+  .field__title {
+    padding: 10px 50px 5px;
+  }
+  .field__input {
+    padding: 0 50px 10px;
+  }
+}
+
+.field {
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}

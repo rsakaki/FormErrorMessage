@@ -1,0 +1,26 @@
+{
+  "error": [
+    {
+      "errorInputName": "name",
+      "errorMessageStr": "正しい名前を入れて下さい。"
+    },
+    {
+      "errorInputName": "password",
+      "errorMessageStr": "正しいパスワードを入れて下さい。"
+    },
+
+    {
+      "errorInputName": "fav1",
+      "errorMessageStr": "好きなものを入れて下さい。"
+    },
+
+    {
+      "errorInputName": "fav2",
+      "errorMessageStr": "好きなものを入れて下さい。"
+    },
+    {
+      "errorInputName": "fav3",
+      "errorMessageStr": "好きなものを入れて下さい。"
+    }
+  ]
+}

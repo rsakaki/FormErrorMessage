@@ -1,0 +1,38 @@
+.errorMessage {
+  display: none;
+  margin-bottom: 8px;
+
+
+}
+.errorMessage__content {
+  position: relative;
+  display: inline-block;
+  padding: 6px;
+  @include fs(11);
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+  line-height: 1;
+  white-space: nowrap;
+  background-color: nth($red, 1);
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -6px;
+    left: 12px;
+    width: 0px;
+    height: 0px;
+    border-bottom: 6px solid nth($red, 1);
+    border-right:  6px solid transparent;
+    border-left: 6px solid transparent;
+  }
+}
+.errorMessage__content__close {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  top: 2px;
+  right: 3px;
+}
