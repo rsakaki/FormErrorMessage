@@ -19,7 +19,7 @@ $(function(){
             $parent = $errorTarget.parents('.field__input');
           }
           $parent.find('.errorMessage').slideDown()
-          .children('.errorMessage__content').append(dataArray[i].errorMessageStr);
+          .children('.errorMessage__content').text(dataArray[i].errorMessageStr);
         }
 
       },
